@@ -18,7 +18,7 @@ spec:
         - name: github-package-registry
       containers:
         - name: runner
-          image: docker.pkg.github.com/andrewhampton/actions-runner-kubernetes/actions-runner-kubernetes-dev:latest
+          image: docker.pkg.github.com/andrewhampton/actions-runner-kubernetes/actions-runner-kubernetes:latest
           imagePullPolicy: Always
           envFrom:
             - secretRef:
