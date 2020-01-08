@@ -12,17 +12,16 @@ apt-get install -y \
     apt-transport-https \
     ca-certificates \
     curl \
-    gnupg-agent \
-    lsb-release \
+    gnupg2 \
     software-properties-common \
     ;
 
 # Install docker repo
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-
-# Add Git PPA
-add-apt-repository -y ppa:git-core/ppa
+curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+apt-key fingerprint 0EBFCD88
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+# add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 
 apt-get update
 
@@ -43,7 +42,6 @@ chown -R runner /opt/actions-runner
 # TODO grab this from https://help.github.com/en/actions/automating-your-workflow-with-github-actions/software-installed-on-github-hosted-runners somehow?
 apt-get install -y \
     docker-ce \
-    git \
     inetutils-ping \
     sudo \
     ;
