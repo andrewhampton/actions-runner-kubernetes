@@ -6,8 +6,8 @@ bases:
   - ./kustomize
 
 images:
-  - name: docker.pkg.github.com/urcomputeringpal/actions-runner-kubernetes/actions-runner-kubernetes-dev
-    newName: docker.pkg.github.com/urcomputeringpal/actions-runner-kubernetes/actions-runner-kubernetes
+  - name: docker.pkg.github.com/andrewhampton/actions-runner-kubernetes/actions-runner-kubernetes-dev
+    newName: docker.pkg.github.com/andrewhampton/actions-runner-kubernetes/actions-runner-kubernetes
     # newTag: v2.164.0-ucp1
     newTag: master
 

@@ -18,11 +18,11 @@ spec:
         - name: github-package-registry
       containers:
         - name: runner
-          image: docker.pkg.github.com/urcomputeringpal/actions-runner-kubernetes/actions-runner-kubernetes-dev:latest
+          image: docker.pkg.github.com/andrewhampton/actions-runner-kubernetes/actions-runner-kubernetes-dev:latest
           imagePullPolicy: Always
           envFrom:
             - secretRef:
-                name: actions-runner  
+                name: actions-runner
           env:
             - name: DOCKER_TLS_CERTDIR
               value: /certs

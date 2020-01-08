@@ -50,7 +50,7 @@ kubectl --namespace <namespace> create secret generic actions-runner \
 * Install the actions runner in your namespace:
 
 ```
-kubectl --namespace <namespace> apply -k https://github.com/urcomputeringpal/actions-runner-kubernetes/releases/<latest release>
+kubectl --namespace <namespace> apply -k https://github.com/andrewhampton/actions-runner-kubernetes/releases/<latest release>
 ```
 
 ## Upgrading
@@ -64,10 +64,10 @@ kubectl -n kube-system delete secret actions-runner
 ```
 
 * Create a [new secret](#create-a-secret-with-a-fresh-runner-token)
-* Upgrade to the [latest release](https://github.com/urcomputeringpal/actions-runner-kubernetes/releases)
+* Upgrade to the [latest release](https://github.com/andrewhampton/actions-runner-kubernetes/releases)
 
 ```
-kubectl --namespace <namespace> apply -k https://github.com/urcomputeringpal/actions-runner-kubernetes?ref=v2.164.0-ucp1
+kubectl --namespace <namespace> apply -k https://github.com/andrewhampton/actions-runner-kubernetes?ref=v2.164.0-ucp1
 ```
 
 * Cleanup any stale runners listed in your repository's Settings.
