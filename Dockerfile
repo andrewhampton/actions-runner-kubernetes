@@ -86,4 +86,4 @@ RUN sudo chmod +x /usr/bin/chromedriver
 RUN sudo apt-get install -y redis-server
 
 RUN /bin/bash ./test.sh
-# ENTRYPOINT ["/bin/bash", "./entrypoint.sh"]
+ENTRYPOINT ["/bin/bash", "./entrypoint.sh"]
