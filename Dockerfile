@@ -66,6 +66,7 @@ RUN sudo apt-get update
 RUN sudo apt-get install --no-install-recommends -y yarn
 
 # Firefox driver
+RUN sudo apt-get install -y firefox-esr
 RUN curl -LO https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz
 RUN tar xvzf geckodriver*
 RUN chmod 744 geckodriver
