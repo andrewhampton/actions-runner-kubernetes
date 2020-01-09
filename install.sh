@@ -10,18 +10,16 @@ apt-get -y upgrade
 # Install setup dependencies
 apt-get install -y \
     apt-transport-https \
-    ca-certificates \
-    curl \
     gnupg2 \
     software-properties-common \
     ;
 
 # Install docker repo
-curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+# curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 apt-key fingerprint 0EBFCD88
-# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-# add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+# add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 
 apt-get update
 

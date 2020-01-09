@@ -3,7 +3,8 @@
 # Ubuntu uses the latest tag to represent the latest stable release
 # https://hub.docker.com/_/ubuntu/
 # FROM ubuntu:latest
-FROM ruby:2.6.3
+# FROM ruby:2.6.3
+FROM buildpack-deps:bionic
 
 # Add our installation script
 COPY install.sh /root/
@@ -19,29 +20,43 @@ WORKDIR /home/runner
 COPY *.sh ./
 # RUN /bin/bash ./rails_deps.sh
 
-RUN sudo apt-get update
-RUN sudo apt-get install -y --no-install-recommends \
-  build-essential \
-  libssl-dev \
-  libreadline-dev \
-  zlib1g-dev
-
 # Setup ruby
 # RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 # RUN git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 # RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 # RUN echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+# RUN ~/.rbenv/bin/rbenv init
 # RUN ~/.rbenv/bin/rbenv install 2.6.3
 # RUN ~/.rbenv/bin/rbenv global 2.6.3
 # RUN ~/.rbenv/bin/rbenv rehash
 # RUN ls -al ~/.rbenv/bin
 # # PATH="$HOME/.rbenv/bin:$PATH"
-# RUN source ~/.bashrc
+# # RUN source ~/.bashrc
 # RUN eval "$(rbenv init -)"
 # RUN gem install bundler
 
-# # Set the SHELL to bash with pipefail option
-# SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN sudo apt-get update
+RUN wget -O ruby-install-0.7.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.7.0.tar.gz && \
+  tar -xzvf ruby-install-0.7.0.tar.gz && \
+  cd ruby-install-0.7.0/ && \
+  sudo make install && \
+  cd ..
+
+RUN ruby-install ruby 2.6.3
+
+RUN wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz && \
+  tar -xzvf chruby-0.3.9.tar.gz && \
+  cd chruby-0.3.9/ && \
+  sudo make install
+
+# Set the SHELL to bash with pipefail option
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN echo "source /usr/local/share/chruby/chruby.sh" >> ~/.bashrc
+RUN source /usr/local/share/chruby/chruby.sh && \
+  chruby ruby-2.6.3
+# RUN ls -al /usr/local/share/chruby/chruby.sh
+# RUN chruby ruby-2.6.3
+
 
 # Setup node
 RUN curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add - && \
@@ -66,7 +81,7 @@ RUN sudo apt-get update
 RUN sudo apt-get install --no-install-recommends -y yarn
 
 # Firefox driver
-RUN sudo apt-get install -y firefox-esr
+RUN sudo apt-get install -y firefox
 RUN curl -LO https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz
 RUN tar xvzf geckodriver*
 RUN chmod 755 geckodriver
