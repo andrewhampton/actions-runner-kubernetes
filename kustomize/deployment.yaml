@@ -55,6 +55,7 @@ spec:
               value: "You betchya!"
         - name: redis
           image: redis:latest
+          command: ["redis-server", "--databases 128")
       volumes:
         - name: docker-storage
           emptyDir: {}
