@@ -51,17 +51,10 @@ spec:
         - name: db
           image: mysql:5.6
           env:
-            MYSQL_ALLOW_EMPTY_PASSWORD: You betchya!
-          # ports:
-          #   - containerPort: 6379
-          #     hostPort: 6379
-          #     hostIP: 127.0.0.1
+            - name: MYSQL_ALLOW_EMPTY_PASSWORD
+              value: "You betchya!"
         - name: redis
-          image: redis:2.8
-          # ports:
-          #   - containerPort: 7474
-          #     hostPort: 7474
-          #     hostIP: 127.0.0.1
+          image: redis:latest
       volumes:
         - name: docker-storage
           emptyDir: {}
