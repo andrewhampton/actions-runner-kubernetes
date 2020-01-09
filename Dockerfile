@@ -69,7 +69,7 @@ RUN sudo apt-get install --no-install-recommends -y yarn
 RUN sudo apt-get install -y firefox-esr
 RUN curl -LO https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz
 RUN tar xvzf geckodriver*
-RUN chmod 744 geckodriver
+RUN chmod 755 geckodriver
 RUN sudo mv geckodriver /usr/local/bin
 
 # Chrome driver
