@@ -102,6 +102,7 @@ RUN sudo chmod +x /usr/bin/chromedriver
 RUN sudo apt-get install -y redis-server
 
 RUN sed -i.bak -e '4,9d' ~/.bashrc
+RUN echo "chruby ruby-2.6.3" >> ~/.bashrc
 
 RUN /bin/bash ./test.sh
 ENTRYPOINT ["/bin/bash", "./entrypoint.sh"]
