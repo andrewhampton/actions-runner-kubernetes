@@ -101,5 +101,7 @@ RUN sudo chmod +x /usr/bin/chromedriver
 # Test dependencies
 RUN sudo apt-get install -y redis-server
 
+RUN sed -i.bak -e '4,9d' ~/.bashrc
+
 RUN /bin/bash ./test.sh
 ENTRYPOINT ["/bin/bash", "./entrypoint.sh"]
